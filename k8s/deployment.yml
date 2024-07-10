@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-devops-python
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-devops-python
+  template:
+    metadata:
+      labels:
+        app: demo-devops-python
+    spec:
+      containers:
+      - name: demo-devops-python
+        image: cjmont/demo-devops-python:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: postgres://devops:devops@db:5432/devops
